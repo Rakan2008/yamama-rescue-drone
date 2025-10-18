@@ -1,6 +1,6 @@
 # 🚁 Yamama Rescue Drone – AI-Powered Emergency Detection System
 
-> A fully integrated **AI and automation project** combining **n8n**, **OpenAI API**, and **Gmail**, along with **local AI modules** for face detection and real-time translation, to support smart rescue operations using drones.
+> A fully integrated **AI and automation project** combining **n8n**, **OpenAI API**, and **Gmail**, along with **local AI modules** for face detection, speech translation, and onboard audio processing using **ReSpeaker Audio HAT**, to support smart rescue operations using drones.
 
 ---
 
@@ -22,10 +22,11 @@
 ## 🧩 Project Concept
 
 **Yamama Rescue Drone** is an intelligent system designed to enhance **search and rescue missions** using artificial intelligence.  
-It captures aerial images through a Raspberry Pi camera, analyzes them using **OpenAI API** through **n8n**,  
-and also includes **local modules** that perform:
-- Face detection and blurring for privacy  
+It captures aerial images via a Raspberry Pi camera, analyzes them using **OpenAI API** through **n8n**,  
+and includes **local AI modules** that handle:
+- Face detection and privacy blurring  
 - Real-time Arabic-to-English voice translation  
+- Audio input/output using **ReSpeaker Audio HAT**
 
 ---
 
@@ -33,8 +34,9 @@ and also includes **local modules** that perform:
 
 - Detect and classify emergency events (🔥 Fire, 🚑 Medical distress, 🩸 Bleeding).  
 - Automate the process from **image capture → AI analysis → alert**.  
-- Enable **local AI** for offline functionality (face detection and translation).  
-- Support field operations with immediate feedback.  
+- Integrate **local AI processing** for face and speech recognition.  
+- Provide **real-time audio feedback** through ReSpeaker HAT.  
+- Support field operations with immediate, autonomous communication.  
 
 ---
 
@@ -42,43 +44,44 @@ and also includes **local modules** that perform:
 
 | Category | Tool / Device | Function |
 |:--|:--|:--|
-| 🔄 Automation | **n8n** | Automates AI workflows and data handling. |
-| 🤖 AI Engine | **OpenAI API** | Performs image analysis and report generation. |
-| 📧 Communication | **Gmail API** | Sends automatic reports and alerts. |
-| 💻 Processor | **Raspberry Pi 4** | Handles camera input and local AI scripts. |
-| 📷 Imaging | **IMX477 HQ Camera** | Captures high-quality aerial images. |
-| 🧠 Local Vision | **OpenCV + Caffe** | Detects and blurs faces for privacy. |
-| 🎙️ Audio AI | **Whisper + gTTS** | Performs voice translation and text-to-speech. |
-| 🚁 Drone Platform | **F450 Frame** | Physical drone body for flight and hardware mounting. |
+| 🔄 Automation | **n8n** | Automates AI workflows and email reporting. |
+| 🤖 AI Engine | **OpenAI API** | Analyzes image content and generates structured reports. |
+| 📧 Communication | **Gmail API** | Sends automatic alerts with detected results. |
+| 💻 Processor | **Raspberry Pi 4** | Central control for local AI and sensors. |
+| 📷 Imaging | **IMX477 HQ Camera** | Captures high-quality stills and video for AI analysis. |
+| 🔊 Audio Module | **ReSpeaker Audio HAT** | Handles multi-microphone input and speaker output for translation. |
+| 🧠 Local Vision | **OpenCV + Caffe** | Performs real-time face detection and blurring. |
+| 🎙️ Audio AI | **Whisper + gTTS** | Performs Arabic-to-English speech translation. |
+| 🚁 Drone Platform | **F450 Frame** | Main drone body with motor and flight control. |
 
 ---
 
 ## 🧠 System Overview
 
 1️⃣ **Image Capture:**  
-Drone camera captures frames during operation.  
+Drone camera captures frames during flight.  
 
-2️⃣ **Cloud Analysis:**  
-Images are sent to **n8n** → **OpenAI API** → analyzed for fire or distress.  
+2️⃣ **Cloud AI:**  
+Images are sent to **n8n** → **OpenAI API** for deep scene analysis.  
 
-3️⃣ **Local AI Processing:**  
-Parallel modules on Raspberry Pi perform **face detection** and **voice translation**.  
+3️⃣ **Local AI:**  
+The Raspberry Pi runs **face detection**, **speech translation**, and **audio playback** using ReSpeaker.  
 
-4️⃣ **Report Generation & Alert:**  
-Results are formatted, summarized, and automatically emailed to the rescue team.
+4️⃣ **Report Generation:**  
+n8n prepares and emails a structured emergency report automatically.  
 
 ---
 
 ## 🔄 n8n Workflow
 
 🧩 **Workflow Steps:**
-1. **Execute Workflow** – Manual or automatic trigger.  
+1. **Execute Workflow** – Manual or automated trigger.  
 2. **Edit Fields** – Upload or receive an image.  
-3. **Analyze Image (OpenAI)** – Uses AI vision to describe image content.  
-4. **Code Node** – Formats structured text output.  
-5. **Build Report** – Creates a readable emergency summary.  
-6. **IF Conditions** – Filters (🔥 Fire / 🚑 Injury / 🩸 Bleeding).  
-7. **Merge + Gmail Nodes** – Combines data and sends automatic email alerts.  
+3. **Analyze Image (OpenAI)** – AI vision analysis.  
+4. **Code Node** – Formats output.  
+5. **Build Report** – Generates a human-readable summary.  
+6. **IF Conditions** – Classifies (🔥 Fire / 🚑 Injury / 🩸 Bleeding).  
+7. **Merge + Gmail Nodes** – Sends the final email alert.  
 
 📸 **n8n Workflow Preview:**  
 ![n8n Workflow](docs/images/n8n_workflow.png)
@@ -87,11 +90,11 @@ Results are formatted, summarized, and automatically emailed to the rescue team.
 
 ## 💾 Dashboard (Figma Design)
 
-A custom **Figma-based Dashboard** visualizes the system’s performance:  
-- Displays live images from the drone.  
-- Shows analysis progress and system status.  
-- Highlights emergency detections with icons.  
-- Lists recent alerts and email logs.
+A **Figma-based Dashboard** visualizes:
+- Live drone camera feed  
+- AI analysis status and results  
+- Detected events with visual indicators  
+- Historical alert log  
 
 📸 **Dashboard Preview:**  
 ![Dashboard Preview](docs/images/dashboard_figma.png)
@@ -100,10 +103,8 @@ A custom **Figma-based Dashboard** visualizes the system’s performance:
 
 ## 🎙️ Local AI Modules
 
-The project includes **standalone Python scripts** for real-time operations that run directly on the Raspberry Pi or any local PC.
-
 ### 🧠 1. Face Blur Detection
-Detects faces in an image and automatically blurs them for privacy.
+Detects faces and automatically blurs them for privacy.
 
 **Run Command:**
 ```bash
@@ -116,13 +117,13 @@ python live_face_blur.py
 ```
 
 📝 Notes:
-- Place your input image in the folder `example/5.jpeg`  
-- Output will be saved as `example/output.jpg`  
+- Place an input image at `example/5.jpeg`  
+- Output is saved as `example/output.jpg`  
 
 ---
 
-### 🎧 2. Speech Translator
-Records Arabic speech, translates it into English using **Whisper + OpenAI + gTTS**, and plays back the result.
+### 🎧 2. Speech Translator (with ReSpeaker Audio HAT)
+Records Arabic speech using **ReSpeaker HAT**, transcribes and translates it to English using **Whisper + OpenAI + gTTS**, and plays the translated result through the speaker.
 
 **Run Command:**
 ```bash
@@ -131,23 +132,20 @@ python speech_translate.py
 
 **How it works:**
 1. Press Enter to start.  
-2. Speak Arabic for 5 seconds.  
-3. Wait for transcription + translation.  
-4. The system speaks the English translation out loud.  
-5. Type `exit` to stop.  
+2. Speak Arabic for 5 seconds through ReSpeaker mic.  
+3. Whisper transcribes + OpenAI translates.  
+4. gTTS generates English speech.  
+5. Output is played via ReSpeaker speaker.  
+6. Type `exit` to quit.  
 
 ---
 
 ## 🧠 AI Analysis Logic
 
-The **OpenAI Vision API** inside **n8n** performs:
-1. Textual description of the scene.  
-2. Classification of potential hazards.  
-3. Structured report generation.  
-4. Automatic email notification.  
-
-Local AI modules handle **face privacy** and **real-time speech translation**,  
-while cloud AI handles **scene understanding** and **critical event detection**.
+- **OpenAI Vision API (via n8n)** analyzes the image, generates descriptive text, and classifies the scene.  
+- **Local AI Modules** on Raspberry Pi handle face privacy and voice translation.  
+- **ReSpeaker HAT** provides audio interface for real-time translation feedback.  
+- The entire system functions seamlessly between **local edge AI** and **cloud intelligence**.  
 
 ---
 
@@ -159,6 +157,9 @@ while cloud AI handles **scene understanding** and **critical event detection**.
 🧠 **Raspberry Pi 4**  
 ![Raspberry Pi 4](docs/images/raspberry_pi4.jpg)
 
+🔊 **ReSpeaker Audio HAT**  
+![ReSpeaker HAT](docs/images/respeaker_hat.jpg)
+
 🚁 **F450 Drone Frame**  
 ![Drone F450](docs/images/drone_f450.jpg)
 
@@ -169,12 +170,12 @@ while cloud AI handles **scene understanding** and **critical event detection**.
 
 ## ⚙️ Execution Steps
 
-1️⃣ Connect the **Raspberry Pi** and camera module.  
-2️⃣ Launch the **local AI modules** for face/speech analysis.  
-3️⃣ Start the **n8n workflow** for cloud AI analysis.  
-4️⃣ Capture or upload images to trigger detection.  
-5️⃣ Wait for both local and cloud systems to finish analysis.  
-6️⃣ Check your **email inbox** for the automated report.  
+1️⃣ Connect Raspberry Pi, IMX477 Camera, and ReSpeaker Audio HAT.  
+2️⃣ Run **local AI modules** for face and voice analysis.  
+3️⃣ Start **n8n workflow** for image interpretation and alerting.  
+4️⃣ Capture or upload an image.  
+5️⃣ Wait for AI results (local + cloud).  
+6️⃣ Check **Gmail inbox** for the report.  
 
 ---
 
