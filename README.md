@@ -84,7 +84,8 @@ n8n prepares and emails a structured emergency report automatically.
 7. **Merge + Gmail Nodes** – Sends the final email alert.  
 
 📸 **n8n Workflow Preview:**  
-![n8n Workflow](docs/images/n8n_workflow.png)
+<img width="1737" height="723" alt="image" src="https://github.com/user-attachments/assets/10af3fbc-e874-4361-bf12-67491fbf1235" />
+
 
 ---
 
@@ -97,7 +98,12 @@ A **Figma-based Dashboard** visualizes:
 - Historical alert log  
 
 📸 **Dashboard Preview:**  
-![Dashboard Preview](docs/images/dashboard_figma.png)
+<img width="1920" height="1080" alt="12" src="https://github.com/user-attachments/assets/fb40e096-0ab1-402b-ac2f-ea34670a77ba" />
+<img width="1920" height="1080" alt="21" src="https://github.com/user-attachments/assets/76f60c1e-26c9-4bac-b41c-8f8ef9a927de" />
+<img width="1920" height="1080" alt="31" src="https://github.com/user-attachments/assets/8aeb0434-6008-4f99-b513-d6a3afe13cbc" />
+
+
+
 
 ---
 
@@ -152,19 +158,24 @@ python speech_translate.py
 ## 🖼️ Hardware & Visuals
 
 📷 **Camera IMX477 HQ**  
-![Camera Module](docs/images/camera_imx477.jpg)
+<img width="1500" height="1500" alt="cam" src="https://github.com/user-attachments/assets/9762a47c-ccfa-47b2-9473-3c26ced9dab4" />
+
 
 🧠 **Raspberry Pi 4**  
-![Raspberry Pi 4](docs/images/raspberry_pi4.jpg)
+<img width="2000" height="1429" alt="ras" src="https://github.com/user-attachments/assets/3b415eff-b7ae-4411-819c-c28b0ae1aa05" />
+
 
 🔊 **ReSpeaker Audio HAT**  
-![ReSpeaker HAT](docs/images/respeaker_hat.jpg)
+<img width="484" height="339" alt="mic" src="https://github.com/user-attachments/assets/7dcf9cdc-7da7-40d7-8149-343d2aab53b9" />
+
 
 🚁 **F450 Drone Frame**  
-![Drone F450](docs/images/drone_f450.jpg)
+<img width="393" height="505" alt="drone" src="https://github.com/user-attachments/assets/34a40c4e-c3b6-4f26-a4ff-8f56e8dea30c" />
+
 
 ⚙️ **System in Action**  
-![System Live](docs/images/system_live.jpg)
+<img width="780" height="483" alt="img" src="https://github.com/user-attachments/assets/84a2dc67-cea3-47d2-a628-ef4b9c64c2bc" />
+
 
 ---
 
@@ -187,7 +198,7 @@ python speech_translate.py
 | Role | Name |
 |:--|:--|
 | 👨‍🏫 Project Advisor / Mentor | **Mr. Badr** |
-| 👥 Team Members | *(Add team names here, e.g., Ali, Nasser, Salem, etc.)* |
+| 👥 Team Members | *(Rakan AlOwaji , Yousef alsaeyd)* |
 | 🧠 Technical Supervision | **Abdulrahman Alnashri** |
 
 ---
