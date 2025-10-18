@@ -1,0 +1,7 @@
+opencv-python
+numpy
+sounddevice
+whisper
+gTTS
+googletrans==4.0.0rc1
+pygame
